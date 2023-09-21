@@ -3,6 +3,12 @@ export default function Form() {
     const [firstname, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+
+    const [firstnameFocus, setFirstNameFocus] = useState(false)
+    const [emailFocus, setEmailFocus] = useState(false)
+    const [passwordFocus, setPasswordFocus] = useState(false)
+
     const [firstnameError, setErrorFirstName] = useState(false)
     const [emailError, setErrorEmail] = useState(false)
     const [passwordError, setErrorPassword] = useState(false)
@@ -15,14 +21,18 @@ export default function Form() {
         if (name == "firstName") {
             setFirstName(value)
             setErrorFirstName(false)
+            setFirstNameFocus(false)
+
         }
         if (name == "email") {
             setEmail(value)
             setErrorEmail(false)
+            setEmailFocus(false)
         }
         if (name == "password") {
             setPassword(value)
             setErrorPassword(false)
+            setPasswordFocus(false)
         }
     }
     const handleSubmit = (e) => {
@@ -33,23 +43,31 @@ export default function Form() {
 
         if (!firstName) {
             setErrorFirstName(true)
+            setFirstNameFocus(true)
         }
         else {
             setErrorFirstName(false)
+            setFirstNameFocus(false)
+
         }
 
         if (!Email) {
             setErrorEmail(true)
+            setEmailFocus(true)
         }
         else {
             setErrorEmail(false)
+            setEmailFocus(false)
         }
 
         if (!Password) {
             setErrorPassword(true)
+            setPasswordFocus(true)
+
         }
         else {
             setErrorPassword(false)
+            setPasswordFocus(false)
         }
         localStorage.setItem("firstName", firstName)
         localStorage.setItem("email", email)
@@ -68,21 +86,22 @@ export default function Form() {
             <div>
                 <h3>Sign up</h3>
             </div>
+
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">first Name</label>
-                    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter firstname" value={firstname} onChange={handleInput} name='firstName' />
+                    <input type="text" className={`${firstnameFocus ? "border-danger form-control" : "form-control border-white"}`} id="exampleInputEmail1" placeholder="Enter firstname" value={firstname} onFocus={setFirstNameFocus} onChange={handleInput} name='firstName' />
                     {firstnameError ? <label style={{ color: 'red' }}>FirstName is required</label> : ""}
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" value={email} onChange={handleInput} name='email' />
+                    <input type="email" className={`${emailFocus ? "border-danger form-control" : " form-control"}`} id="exampleInputEmail1" placeholder="Enter email" value={email} onFocus={setEmailFocus} onChange={handleInput} name='email' />
                     {emailError ? <label style={{ color: 'red' }}>email is required</label> : ""}
 
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="password" value={password} onChange={handleInput} name='password' />
+                    <input type="password" className={`${passwordFocus ? "border-danger form-control" : " form-control"}`} id="exampleInputPassword1" placeholder="password" value={password} onFocus={setPasswordFocus} onChange={handleInput} name='password' />
                     {passwordError ? <label style={{ color: 'red' }}>password is required</label> : ""}
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
@@ -95,9 +114,7 @@ export default function Form() {
                         <p>Password : {formData.password}</p>
                     </div>
                 }
-
             </div>
         </>
-
     )
 }

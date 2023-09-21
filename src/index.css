@@ -12,6 +12,10 @@ body {
   width: 300px;
 }
 
+li {
+  list-style: none;
+}
+
 form {
   margin: 37px auto;
 }
@@ -20,4 +24,12 @@ form {
   display: grid;
   justify-items: start;
   place-content: center;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 45px;
+  padding: 24px 76px;
 }

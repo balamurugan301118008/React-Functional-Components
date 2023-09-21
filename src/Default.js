@@ -13,14 +13,14 @@ export default function DefaultLayout() {
     return (
         <Router>
             <div>
-                <ul>
-                    <li>
+                <ul className="nav justify-content-end">
+                    <li className="nav-item">
                         <Link to="/">SignUp</Link>
                     </li>
-                    <li>
+                    <li className="nav-item">
                         <Link to="/home">Home</Link>
                     </li>
-                    <li>
+                    <li className="nav-item">
                         <Link to="/about">About</Link>
                     </li>
                 </ul>
